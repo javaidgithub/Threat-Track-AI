@@ -44,3 +44,9 @@ if uploaded_file is not None:
         st.subheader("📊 Request Distribution")
         req_counts = df["request_method"].value_counts()
         st.table(req_counts)
+
+
+if st.button("Logout"):
+    st.session_state.logged_in = False
+    st.success("👋 Logged out successfully.")
+    st.switch_page("pages/LogIn.py")

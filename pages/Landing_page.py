@@ -138,8 +138,8 @@ st.write("📊 **SMEs** ► Affordable AI-based monitoring for small businesses"
 
 
 # ================= IMAGE / BANNER =================
-st.image("22.png", width='stretch')
-st.markdown("---")
+# st.image("22.png", width='stretch')
+# st.markdown("---")
 
 
 # ================= FAQ SECTION =================
