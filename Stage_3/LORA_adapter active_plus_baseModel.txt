@@ -1,0 +1,17 @@
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from peft import PeftModel
+
+model_name = "meta-llama/Llama-3.2-3B"
+
+# Load base model + adapters
+base_model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = PeftModel.from_pretrained(base_model, "./llama3-finetuned")
+
+def chat(prompt):
+    inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
+    outputs = model.generate(**inputs, max_new_tokens=100)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+print(chat("Log: ERROR Disk full at /dev/sda1"))  # anomaly detection
+print(chat("Explain black holes in simple terms"))  # general QA
